@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surpise Gift</title>
+    <link rel="stylesheet" href="surpirse.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Cookie&family=Satisfy&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="countdown-container" id="countdown">
+        <div class="countdown-box">
+            <span id="days">00</span>
+            <span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-box">
+            <span id="hours">00</span>
+            <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-box">
+            <span id="minutes">00</span>
+            <span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-box">
+            <span id="seconds">00</span>
+            <span class="countdown-label">Seconds</span>
+        </div>
+    </div>
+    <div class="intro-card">
+        <p>Here's a Small present for you! <img src="3-heart.png" alt="3-heart"></p>
+        <div class="button">
+            <a href="tubelight.html">
+                <button id="redirectButton" class="redirect-button">Click Me</button>
+            </a>
+        </div>
+    </div>
+    <div class="heart-container">
+            <div class="heart"><img src="1-heart.png" alt="heart"></div>
+            <div class="heart"><img src="1-heart.png" alt="heart"></div>
+            <div class="heart"><img src="1-heart.png" alt="heart"></div>
+            <div class="heart"><img src="1-heart.png" alt="heart"></div>
+            <div class="heart"><img src="1-heart.png" alt="heart"></div>
+            <div class="heart"><img src="1-heart.png" alt="heart"></div>
+            <div class="heart"><img src="1-heart.png" alt="heart"></div>
+            <div class="heart"><img src="1-heart.png" alt="heart"></div>
+            <div class="heart"><img src="1-heart.png" alt="heart"></div>
+            <div class="heart"><img src="1-heart.png" alt="heart"></div>
+    </div>
+    
+    
+    <script>
+           document.addEventListener("DOMContentLoaded", function () {
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
+    const countdownContainer = document.querySelector(".countdown-container");
+    const heartsContainer = document.querySelector(".heart-container");
+    const introCard = document.querySelector(".intro-card");
+    const redirectButton = document.getElementById("redirectButton");
+
+
+    const targetDate = new Date("February 13, 2025 22:29:00").getTime();
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const timeLeft = targetDate - now;
+
+        if (timeLeft <= 0) {
+            clearInterval(countdownInterval); 
+
+            
+            countdownContainer.classList.add("fade-out"); 
+
+            setTimeout(() => {
+                countdownContainer.style.display = "none"; 
+                heartsContainer.classList.add("show-hearts"); 
+                introCard.classList.add("pop-up"); 
+                redirectButton.classList.add("show-button");
+            }, 1000); 
+
+            return;
+        }
+
+  
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+   
+        daysEl.innerText = days.toString().padStart(2, "0");
+        hoursEl.innerText = hours.toString().padStart(2, "0");
+        minutesEl.innerText = minutes.toString().padStart(2, "0");
+        secondsEl.innerText = seconds.toString().padStart(2, "0");
+    }
+
+
+    redirectButton.addEventListener("click", function () {
+        window.location.href = "nextpage.html"; 
+    });
+
+
+    const countdownInterval = setInterval(updateCountdown, 1000);
+    updateCountdown(); 
+    });
+    </script>
+    
+</body>
+</html>
